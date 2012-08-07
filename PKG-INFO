@@ -1,0 +1,21 @@
+Metadata-Version: 1.0
+Name: django-mainmenu
+Version: 0.1.0
+Summary: django pluggable application for make dynamic the main menu of web apps
+Home-page: https://github.com/francofuji/django-mainmenu
+Author: Francisco Pérez Ferrer
+Author-email: francofuji@gmail.com
+License: UNKNOWN
+Description: ===============
+        django-mainmenu
+        ===============
+        
+
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python

@@ -1,0 +1,276 @@
+{% load filtros %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xml:lang="en">
+<head>
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>Sistema para el control de mantenimientos y reparaciones de medios informáticos</title>
+
+    <script type="text/javascript" src="{{MEDIA_URL}}js/script.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery/jquery-1.4.2.min.js"></script>
+
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/style.css" type="text/css" media="screen" />
+    <!--[if IE 6]><link rel="stylesheet" href="{{MEDIA_URL}}css/style.ie6.css" type="text/css" media="screen" /><![endif]-->
+
+    {% block css %}
+    {% endblock %}
+    
+    {% block script %}
+    {% endblock %}
+    
+</head>
+<body>
+<div class="PageBackgroundSimpleGradient">
+    </div>
+    <div class="Main">
+        <div class="Sheet">
+            <div class="Sheet-tl"></div>
+            <div class="Sheet-tr"><div></div></div>
+            <div class="Sheet-bl"><div></div></div>
+            <div class="Sheet-br"><div></div></div>
+            <div class="Sheet-tc"><div></div></div>
+            <div class="Sheet-bc"><div></div></div>
+            <div class="Sheet-cl"><div></div></div>
+            <div class="Sheet-cr"><div></div></div>
+            <div class="Sheet-cc"></div>
+            <div class="Sheet-body">
+                <div class="Header">
+                    <p align="right" style="padding-top:15px;"><a style="color:#fff !Important;margin:15px;cursor:pointer " href="{% url sitio_salir %}">Salir</a><p>
+                    <p align="right"><a style="color:#fff !Important;margin:15px;cursor:pointer " href="{% url  sitio_cambiar_password %}">Cambiar contraseña</a>
+                    <p align="right" style="color:#fff !Important;margin:15px;"><font style="background-color:black">{{user.get_full_name }}</font></a>
+                    <div class="Header-jpeg"></div>
+                    <div class="logo">
+                        <h1 id="name-text" class="logo-name"><a href="#"></a></h1>
+                        <div id="slogan-text" class="logo-text"></div>
+                    </div>
+                </div>
+                <div class="nav">
+                    <ul class="artmenu">
+                      {% for menu in MENU %}
+                          {% if menu.orden == 1 %}
+                              <li><a href="{{ menu.url }}" {% if menu.activo %}class="active"{% endif %}><span><span>{{ menu.nombre }}</span></span></a></li>
+                          {% endif %}
+                            {% if menu.orden == 2 and user|tienerol:'recepcionista,tecnico,subdirector,jefe_taller' %}
+                              <li><a href="{{ menu.url }}" {% if menu.activo %}class="active"{% endif %}><span><span>{{ menu.nombre }}</span></span></a></li>
+                          {% endif %}
+                            {% if menu.orden == 3 and user|tienerol:'recepcionista'  %}
+                              <li><a href="{{ menu.url }}" {% if menu.activo %}class="active"{% endif %}><span><span>{{ menu.nombre }}</span></span></a></li>
+                          {% endif %}
+                            {% if menu.orden == 4 and user|tienerol:'jefe_taller' %}
+                              <li><a href="{{ menu.url }}" {% if menu.activo %}class="active"{% endif %}><span><span>{{ menu.nombre }}</span></span></a></li>
+                          {% endif %}
+                            {% if menu.orden == 5 and user|tienerol:'consultor'  %}
+                              <li><a href="{{ menu.url }}" {% if menu.activo %}class="active"{% endif %}><span><span>{{ menu.nombre }}</span></span></a></li>
+                          {% endif %}          
+                            {% if menu.orden == 6 and user|tienerol:'recepcionista'  %}
+                              <li><a href="{{ menu.url }}" {% if menu.activo %}class="active"{% endif %}><span><span>{{ menu.nombre }}</span></span></a></li>
+                          {% endif %}                                                                                                 
+                            {% if menu.orden == 7 and user|tienerol:'administrador' %}
+                              <li><a href="{{ menu.url }}" {% if menu.activo %}class="active"{% endif %}><span><span>{{ menu.nombre }}</span></span></a></li>
+                          {% endif %}
+                            {% if menu.orden == 8  %}
+                              <li><a href="{{ menu.url }}" {% if menu.activo %}class="active"{% endif %}><span><span>{{ menu.nombre }}</span></span></a></li>
+                          {% endif %}                         
+                      {% endfor %}  
+                    </ul>
+                    <div class="l">
+                    </div>
+                    <div class="r">
+                        <div>
+                        </div>
+                    </div>
+                </div>
+                
+           {% block submenu %}   
+                <div class="">
+                   &nbsp;
+                </div> 
+           {% endblock %}   
+                <div class="contentLayout">
+                  {% block contenido %}   
+                    <table width="870" border="0" cellspacing="0" cellpadding="0" align="center">
+                      <tr>
+                        <td width="20">&nbsp;</td>
+                        <td>
+                            <div class="sidebar1">
+                               <div class="Block">
+                                    <div class="Block-tl"></div>
+                                                <div class="Block-tr"><div></div></div>
+                                                <div class="Block-bl"><div></div></div>
+                                                <div class="Block-br"><div></div></div>
+                                                <div class="Block-tc"><div></div></div>  
+                                                <div class="Block-bc"><div></div></div>
+                                                <div class="Block-cl"><div></div></div>
+                                                <div class="Block-cr"><div></div></div>
+                                                <div class="Block-cc"></div>
+                                                <div class="Block-body">
+                                                        <div class="BlockHeader">
+                                                        <div class="header-tag-icon">
+                                                            <div class="BlockHeader-text">
+                                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{MEDIA_URL}}imagenes/darSalida.png"/>  
+                                                            </div>
+                                                        </div>
+                                                        <div class="l"></div>
+                                                        <div class="r"><div></div></div>
+                                                    </div>
+                                                    <div class="BlockContent">
+                                                        <div class="BlockContent-body">
+                                                            <div align="center">
+                                                                <font> Equipos por entregar</font>
+                                                                <font>
+                                                                  : {{totalporentregar}}<br>
+                                                                </font>    
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                               </div>
+                            </div>
+                        </td>
+                        <td width="20">&nbsp;</td>
+                        <td width="20">&nbsp;</td>
+                        <td >
+                            <div class="sidebar2">
+                               <div class="Block">
+                                        <div class="Block-tl"></div>
+                                                <div class="Block-tr"><div></div></div>
+                                                <div class="Block-bl"><div></div></div>
+                                                <div class="Block-br"><div></div></div>
+                                                <div class="Block-tc"><div></div></div>  
+                                                <div class="Block-bc"><div></div></div>
+                                                <div class="Block-cl"><div></div></div>
+                                                <div class="Block-cr"><div></div></div>
+                                                <div class="Block-cc"></div>
+                                   <div class="Block-body">
+                                                        <div class="BlockHeader">
+                                                        <div class="header-tag-icon">
+                                                            <div class="BlockHeader-text">
+                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{MEDIA_URL}}imagenes/pendiente.png"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="l"></div>
+                                                        <div class="r"><div></div></div>
+                                                    </div>
+                                                    <div class="BlockContent">
+                                                        <div class="BlockContent-body">
+                                                            <div align="center">
+                                                                <font> Equipos pendientes</font>
+                                                                <font>
+                                                                  : {{totalpendientes}}<br>
+                                                                </font>    
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                               </div>
+                            </div>
+                        </td>
+                        <td width="20">&nbsp;</td>
+                        <td width="20">&nbsp;</td>
+                        <td>
+                            <div class="sidebar2">
+                              <div class="Block">
+                                    <div class="Block-tl"></div>
+                                                <div class="Block-tr"><div></div></div>
+                                                <div class="Block-bl"><div></div></div>
+                                                <div class="Block-br"><div></div></div>
+                                                <div class="Block-tc"><div></div></div>  
+                                                <div class="Block-bc"><div></div></div>
+                                                <div class="Block-cl"><div></div></div>
+                                                <div class="Block-cr"><div></div></div>
+                                                <div class="Block-cc"></div>
+                                       <div class="Block-body">
+                                                        <div class="BlockHeader">
+                                                        <div class="header-tag-icon">
+                                                            <div class="BlockHeader-text">
+                                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{MEDIA_URL}}imagenes/entradas.png"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="l"></div>
+                                                        <div class="r"><div></div></div>
+                                                    </div>
+                                                    <div class="BlockContent">
+                                                        <div class="BlockContent-body">
+                                                            <div align="center">
+                                                                <font> Entradas últimos 7 días </font> 
+                                                                <font>
+                                                                  : {{totalentradas}}<br>
+                                                                </font>    
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                              </div>  
+                        </td>
+                        <td width="20">&nbsp;</td>
+                      </tr>
+                      
+                      <tr>
+                        <td colspan="3">&nbsp;</td>
+                        <td colspan="3">&nbsp;</td>
+                        <td colspan="3">&nbsp;</td>
+                      </tr>
+                      
+                      <tr>
+                        <td colspan="3" width="300" valign="top" class="BlockContent-body">
+                           <ul>     
+                             {% for item in porentregar|slice:"10"  %}
+                                <li style="text-align:left">
+                                <strong>{{item.equipo.tipo_equipo}}</strong> {{item.equipo.marcamodelo}} - <strong> Num. serie: </strong>{{item.equipo}}
+                                 <br>Entró: {{item.fecha_entrada|tiempotranscurrido|capfirst}}, Atendido: {{item.atencion.fecha|tiempotranscurrido|capfirst}}
+                             </li>
+                             {% endfor %}  
+                           </ul>   
+                        </td>
+    
+                        <td colspan="3" width="300" class="line BlockContent-body" valign="top" style="padding-right:10px !Important;">
+                            <ul >
+                              {% for item in pendientes|slice:"10" %}
+                             <li style="text-align:left">
+                                <strong>{{item.equipo.tipo_equipo}}</strong> {{item.equipo.marcamodelo}} - <strong> Num. serie: </strong>{{item.equipo}}
+                                <br>Entró: {{item.fecha_entrada|tiempotranscurrido|capfirst}}, Atendido: {{item.atencion.fecha|tiempotranscurrido|capfirst}}
+                             </li>
+                             {% endfor %}  
+                            </ul>    
+                        </td>
+                       
+                        <td colspan="3" width="300" valign="top" class="BlockContent-body">
+                            <ul>
+                             {% for item in entradas|slice:"10" %}
+                             <li style="text-align:left">
+                                <strong>{{item.equipo.tipo_equipo}}</strong> {{item.equipo.marcamodelo}} - <strong> Num. serie: </strong>{{item.equipo}}
+                                 <br>Entró: {{item.fecha_entrada|tiempotranscurrido|capfirst}}
+                             </li>
+                             {% endfor %} 
+                            </ul>    
+                        </td>
+                       
+                      </tr>
+                      
+                       <tr>
+                        <td colspan="3">&nbsp;</td>
+                        <td colspan="3">&nbsp;</td>
+                        <td colspan="3">&nbsp;</td>
+                      </tr>
+                      
+                    </table>
+                  {% endblock %}  
+                <div class="cleared"></div><div class="Footer">
+                    <div class="Footer-inner">
+                        <div class="Footer-text">
+                            <p> Subdirección de Infocomunicaciones &copy; 2011<br />
+                               -- Palacio de le Revolución --</p>
+                        </div>
+                    </div>
+                    <div class="Footer-background"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cleared"></div>
+
+    </div>
+    
+</body>
+</html>
